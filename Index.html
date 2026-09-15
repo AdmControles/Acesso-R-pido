@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal Self BI - primeiros passos, acessos, chamados e documentação.">
+    <title>Portal Self BI</title>
+
+    <style>
+        :root {
+            --blue: #0057b8;
+            --blue-dark: #003b7d;
+            --ink: #0f172a;
+            --muted: #64748b;
+            --line: #dbe4f0;
+            --surface: #ffffff;
+            --background: #f5f7fa;
+            --warning: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--background);
+            color: #334155;
+            font-family: "Segoe UI", Arial, sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.35;
+        }
+
+        .page {
+            margin: 0 auto;
+            max-width: 1040px;
+            padding: 24px 18px;
+        }
+
+        .hero {
+            align-items: flex-end;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            gap: 16px;
+        }
+
+        .eyebrow {
+            color: var(--blue);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            color: var(--ink);
+            font-size: clamp(1.65rem, 4vw, 2.35rem);
+            line-height: 1.1;
+            margin: 4px 0 6px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            max-width: 560px;
+        }
+
+        .badge {
+            background: #e8f1fc;
+            border: 1px solid #cfe1f7;
+            border-radius: 999px;
+            color: var(--blue-dark);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 6px 10px;
+            white-space: nowrap;
+        }
+
+        .section {
+            background: var(--surface);
+            border: 1px solid #e8edf3;
+            border-radius: 11px;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+            margin-bottom: 14px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            align-items: center;
+            background: linear-gradient(135deg, #ffffff, #f8fbff);
+            border-bottom: 1px solid #e8edf3;
+            display: flex;
+            gap: 9px;
+            padding: 12px 16px;
+        }
+
+        .section-icon {
+            align-items: center;
+            background: #e8f1fc;
+            border-radius: 8px;
+            display: inline-flex;
+            font-size: 1rem;
+            height: 30px;
+            justify-content: center;
+            width: 30px;
+        }
+
+        h2 {
+            color: var(--ink);
+            font-size: 1.05rem;
+        }
+
+        .section-content {
+            padding: 4px 16px 14px;
+        }
+
+        .tree,
+        .tree ul {
+            list-style: none;
+        }
+
+        .tree > li {
+            border-bottom: 1px solid #eef2f7;
+            padding: 10px 0;
+        }
+
+        .tree > li:last-child {
+            border-bottom: 0;
+        }
+
+        .tree ul {
+            border-left: 2px solid var(--line);
+            margin: 7px 0 0 10px;
+            padding-left: 16px;
+        }
+
+        .tree ul li {
+            padding: 3px 0;
+            position: relative;
+        }
+
+        .tree ul li::before {
+            background: var(--line);
+            content: "";
+            height: 2px;
+            left: -16px;
+            position: absolute;
+            top: 20px;
+            width: 11px;
+        }
+
+        .folder {
+            color: var(--ink);
+            display: block;
+            font-weight: 700;
+        }
+
+        .folder small {
+            color: var(--muted);
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 400;
+            margin-top: 1px;
+        }
+
+        a {
+            align-items: center;
+            color: var(--blue);
+            display: inline-flex;
+            gap: 5px;
+            text-decoration: none;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        a:hover {
+            color: var(--blue-dark);
+            text-decoration: underline;
+            transform: translateX(2px);
+        }
+
+        .link-label {
+            font-weight: 600;
+        }
+
+        .alert {
+            background: #fff8e7;
+            border-left: 4px solid var(--warning);
+            border-radius: 7px;
+            color: #713f12;
+            margin-top: 12px;
+            padding: 10px 12px;
+        }
+
+        .workspace-list {
+            background: #0f172a;
+            border-radius: 10px;
+            color: #e2e8f0;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 0.76rem;
+            line-height: 1.55;
+            margin-top: 9px;
+            overflow-x: auto;
+            padding: 9px 11px;
+        }
+
+        footer {
+            color: #94a3b8;
+            font-size: 0.72rem;
+            padding: 8px 0 2px;
+            text-align: center;
+        }
+
+        @media (max-width: 640px) {
+            .page {
+                padding: 18px 12px;
+            }
+
+            .hero {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .section-header,
+            .section-content {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page">
+        <header class="hero">
+            <div>
+                <h1></h1>
+                <p>Acesse dashboards, bases, chamados, solicitações e materiais de apoio em um só lugar.</p>
+            </div>
+        </header>
+
+        <section class="section">
+
+            <div class="section-content">
+                <ul class="tree">
+  
+                    <li>
+                        <span class="folder">📂 OneDrive <small></small></span>
+                        <ul>
+                            <li>
+                                <a href="https://brfcorp-my.sharepoint.com/shared?id=%2Fsites%2Farquivoscompartilhadosriscos%2FDocumentos%20Compartilhados%2FDashboard&listurl=https%3A%2F%2Fbrfcorp%2Esharepoint%2Ecom%2Fsites%2Farquivoscompartilhadosriscos%2FDocumentos%20Compartilhados&viewid=cf4e4856%2Dc87d%2D4b21%2D951a%2D9682ef886de1" target="_blank" rel="noopener noreferrer">
+                                    📄 Arquivos compartilhados
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://brfcorp-my.sharepoint.com/shared?id=%2Fsites%2Farquivoscompartilhadosriscos%2FDocumentos%20Compartilhados%2FDashboard%2F01%2E%20Bases%20Globais&listurl=https%3A%2F%2Fbrfcorp%2Esharepoint%2Ecom%2Fsites%2Farquivoscompartilhadosriscos%2FDocumentos%20Compartilhados" target="_blank" rel="noopener noreferrer">
+                                    📄 Bases globais
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <span class="folder">📁 Gerenciador de Demandas</span>
+                        <ul>
+                            <li>
+                                <a href="https://app.powerbi.com/groups/1bc3064a-a7d2-4f4b-b925-af54faad6d80/reports/e6929bd9-7876-46b1-91a0-de9c729ed466/50d65485220e04c6bc6e?language=pt-BR&experience=power-bi" target="_blank" rel="noopener noreferrer">
+                                    📄 Power BI - Gerenciador de Demandas
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://brfcorp-my.sharepoint.com/shared?id=%2Fsites%2Farquivoscompartilhadosriscos%2FDocumentos%20Compartilhados%2FDashboard%2F01%2E%20Bases%20Globais%2FControles&listurl=https%3A%2F%2Fbrfcorp%2Esharepoint%2Ecom%2Fsites%2Farquivoscompartilhadosriscos%2FDocumentos%20Compartilhados&viewid=cf4e4856%2Dc87d%2D4b21%2D951a%2D9682ef886de1" target="_blank" rel="noopener noreferrer">
+                                    📄 Base de Dados - Gerenciador de Demandas
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <span class="folder">📁 Chamados</span>
+                        <ul>
+                            <li>
+                                <a href="https://app.powerbi.com/groups/1bc3064a-a7d2-4f4b-b925-af54faad6d80/reports/83231c8b-adbf-4495-8f00-976f2d047dc0?language=pt-BR&experience=power-bi&subfolderId=130698" target="_blank" rel="noopener noreferrer">
+                                    📄 Power BI - Chamados
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://brfcorp.sharepoint.com/:x:/r/sites/arquivoscompartilhadosriscos/_layouts/15/Doc.aspx?sourcedoc=%7B8609C16C-9BD7-4405-917D-9E71B053CB8B%7D&file=Chamados%20TI.xlsx&action=default&mobileredirect=true" target="_blank" rel="noopener noreferrer">
+                                    📄 Base de Dados - Chamados
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <span class="folder">📁 Novos ou Melhorias</span>
+                        <ul>
+                            <li>
+                                <a href="https://app.powerbi.com/groups/126479bc-75eb-4aad-a05a-6efd9b94a702/reports/a7be0b95-4d3b-43cf-94ad-c41c3df3e17b/a4a0b474043094edb41d?language=pt-BR&experience=power-bi" target="_blank" rel="noopener noreferrer">
+                                    📄 Power BI - Acesso do Ponto Focal
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?origin=NeoPortalPage&subpage=design&id=EBeVJ7nr-06kpUjkYIItS3mC-psxl91KtXc1rTP-AehUMU5aNU9ZNllBQTI0NU5FNDkxWVJYWTlWVy4u" target="_blank" rel="noopener noreferrer">
+                                    📄 Base de Dados - Novos
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?origin=NeoPortalPage&subpage=design&id=EBeVJ7nr-06kpUjkYIItS3mC-psxl91KtXc1rTP-AehUQUFaNktaV1I3M0tCNE44QlRLMjBLTk4xTC4u" target="_blank" rel="noopener noreferrer">
+                                    📄 Base de Dados - Melhorias e correções
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <span class="folder">🔐 Acessos</span>
+                        <ul>
+                            <li>
+                                <a href="https://brfprd.service-now.com/brf?id=sc_cat_item&sys_id=627eacde87f8b5505e4262c30cbb3528&referrer=recent_items" target="_blank" rel="noopener noreferrer">
+                                    💻 Solicitar instalação do Power BI
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://brfprd.service-now.com/brf?id=sc_cat_item&sys_id=8ff881489775d6106111f3b6f053af96" target="_blank" rel="noopener noreferrer">
+                                    🔑 Solicitar acesso a workspaces
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://brfcorp.sharepoint.com/:w:/r/sites/arquivoscompartilhadosriscos/_layouts/15/Doc.aspx?sourcedoc=%7B7DAA1F50-9273-4A5B-ACC1-186F20397AD6%7D&file=Solicitar%20acesso%20ao%20workspace.docx&action=default&mobileredirect=true" target="_blank" rel="noopener noreferrer">
+                                    📘 Tutorial para solicitar acesso
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="https://app.powerbi.com/groups/1bc3064a-a7d2-4f4b-b925-af54faad6d80/reports/c5fffcd8-1a25-4bd2-bef5-8d1a1caae84e/d9259fcddd78fd51e442?language=pt-BR&experience=power-bi" target="_blank" rel="noopener noreferrer">
+                        🎨 <span class="link-label">Power BI - Modelo Visual a ser utilizado</span>
+                        </a>
+                    </li>
+                </ul>
+                 
+            </div>
+                                
+        </section>
+        <section class="section">
+            <div class="section-header">
+                <h2>Chamados sobre Databricks</h2>
+            </div>
+            <div class="section-content">
+                <ul class="tree">
+
+                    <li>
+                        <a href="https://brfprd.service-now.com/brf?id=brf_incident&sys_id=9fab39e2d7532100a9ad1e173e24d484" target="_blank" rel="noopener noreferrer">
+                            📁 <span class="link-label">Abrir incidente</span> — Erro em tabela ou view
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://brfprd.service-now.com/brf?id=sc_cat_item&sys_id=a613f46187b371105e4262c30cbb350d" target="_blank" rel="noopener noreferrer">
+                            📁 <span class="link-label">Abrir chamado</span> — Melhorias ou novas tabelas/views
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <footer>• Time de Automação </footer>
+    </main>
+</body>
+
+</html>
